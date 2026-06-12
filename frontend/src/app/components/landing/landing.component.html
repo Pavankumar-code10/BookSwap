@@ -1,4 +1,4 @@
-<section class="relative isolate overflow-hidden min-h-screen">
+<section class="relative isolate min-h-screen">
     <div class="hidden mt-0 md:flex">
         <div *ngIf="showLoading" class="fixed inset-0 flex items-center justify-center z-50 bg-white">
             <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
@@ -53,15 +53,15 @@
                 </button>
             </div>
             <div class="hidden lg:mt-0 md:flex">
-                <canvas appLazyLoadCanvas #canvas3d id="canvas3d"></canvas>
+                <canvas #canvas3d id="canvas3d"></canvas>
             </div>
         </div>
     </section>
 </section>
-<section id="about">
+<section id="about" class="scroll-mt-28">
     <app-about></app-about>
 </section>
-<section id="contact">
+<section id="contact" class="scroll-mt-28">
     <app-contact></app-contact>
 </section>
 <app-footer></app-footer>

@@ -14,7 +14,7 @@ exports.addBook = async (req, res, next) => {
 
         // Prepare Book Data
         const bookData = {
-            userUID: uid,
+            ownerUid: uid,
             isbn,
             title,
             author,

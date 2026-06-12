@@ -6,6 +6,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './features/auth/auth.module';
 import { BooksModule } from './features/books/books.module';
 import { ProfileModule } from './features/profile/profile.module';
+import { ChatModule } from './features/chat/chat.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +22,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { TestConnectionComponent } from './components/test-connection/test-connection.component';
 // Moved components removed from imports
-import { LazyLoadCanvasDirective } from './lazy-load-canvas.directive';
+// Moved components removed from imports
 import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
@@ -33,7 +34,7 @@ import { DatePipe } from '@angular/common';
     LandingComponent,
     AboutComponent,
     ContactComponent,
-    LazyLoadCanvasDirective,
+    ContactComponent,
     TestConnectionComponent
   ],
   imports: [
@@ -45,6 +46,7 @@ import { DatePipe } from '@angular/common';
     AuthModule,
     BooksModule, // Imported
     ProfileModule, // Imported
+    ChatModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

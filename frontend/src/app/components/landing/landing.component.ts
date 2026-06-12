@@ -13,10 +13,10 @@ export class LandingComponent implements AfterViewInit {
   showLoading: boolean = true;
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.showLoading = false;
-    }, 5000);
     const app = new Application(this.canvas.nativeElement);
-    app.load('https://prod.spline.design/zaRMDUVW9z05k2cX/scene.splinecode');
+    app.load('https://prod.spline.design/zaRMDUVW9z05k2cX/scene.splinecode')
+      .then(() => {
+        this.showLoading = false;
+      });
   }
 }

@@ -7,7 +7,17 @@ exports.getUserProfile = async (req, res, next) => {
         const userDoc = await db.collection('users').doc(uid).get();
 
         if (!userDoc.exists) {
-            return res.status(404).json({ success: false, error: 'User not found' });
+            // Auto-create a default profile if missing (Self-healing)
+            const defaultUser = {
+                userUID: uid,
+                displayName: 'Fellow Reader',
+                email: '',
+                photoURL: 'assets/default-avatar.png',
+                bio: 'This user loves reading!',
+                createdAt: new Date().toISOString()
+            };
+            await db.collection('users').doc(uid).set(defaultUser);
+            return res.status(200).json({ success: true, data: defaultUser });
         }
 
         res.status(200).json({ success: true, data: userDoc.data() });
@@ -39,9 +49,9 @@ exports.getUserBooks = async (req, res, next) => {
     try {
         const { uid } = req.params;
 
-        // Query 'books' collection where userUID == uid
+        // Query 'books' collection where ownerUid == uid
         const booksSnapshot = await db.collection('books')
-            .where('userUID', '==', uid)
+            .where('ownerUid', '==', uid)
             .get();
 
         const books = [];

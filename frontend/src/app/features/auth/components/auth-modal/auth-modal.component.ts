@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { generateRandomUsernameAndAvatar } from '../../../../shared/utils/avatar.utils';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, setDoc } from '@angular/fire/firestore';
 
 @Component({
     selector: 'app-auth-modal',
@@ -96,6 +96,14 @@ export class AuthModalComponent {
         } catch (error) {
             this.toastr.error('Login failed', 'Error');
         }
+    }
+
+    demoLogin() {
+        this.authService.mockLogin().then(() => {
+            this.toastr.success('Welcome back, Demo User!', 'Logged In');
+            this.closeModal.emit();
+            this.router.navigate(['/bookStore']);
+        });
     }
 
     // Google Sign In ... (Also needs refactoring to use AuthService wrappers if added)

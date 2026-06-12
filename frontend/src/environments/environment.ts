@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://bookswap-backend.onrender.com/api',
+  apiUrl: 'http://localhost:3000/api',
   firebase: {
     apiKey: "AIzaSyCzt9aAR-o0Bmwg2c8MSuRJCCw4i-Cz7pE",
     authDomain: "bookswap-b7eae.firebaseapp.com",

@@ -31,18 +31,55 @@ exports.sendRequest = async (req, res, next) => {
             return res.status(400).json({ success: false, error: 'Request already sent' });
         }
 
+        // Get sender details for notification
+        const senderDoc = await db.collection('users').doc(senderId).get();
+        const senderName = senderDoc.exists ? senderDoc.data().displayName || 'Someone' : 'Someone';
+
+        // Create chat between users
+        const chatData = {
+            participants: [senderId, receiverId],
+            bookId,
+            bookTitle: bookData.title,
+            lastMessage: '',
+            lastMessageTime: new Date().toISOString(),
+            createdAt: new Date().toISOString()
+        };
+        const chatRef = await db.collection('chats').add(chatData);
+
         const requestData = {
             senderId,
             receiverId, // Book owner
             bookId,
             bookTitle: bookData.title,
             status: 'pending',
+            chatId: chatRef.id,
             createdAt: new Date().toISOString()
         };
 
         const docRef = await db.collection('requests').add(requestData);
 
-        res.status(201).json({ success: true, message: 'Request sent successfully', requestId: docRef.id });
+        // Create notification for book owner
+        const notificationData = {
+            recipientUID: receiverId,
+            type: 'interest_received',
+            title: 'New Interest in Your Book!',
+            message: `${senderName} is interested in "${bookData.title}"`,
+            relatedBookId: bookId,
+            relatedRequestId: docRef.id,
+            relatedChatId: chatRef.id,
+            senderUID: senderId,
+            senderName: senderName,
+            read: false,
+            createdAt: new Date().toISOString()
+        };
+        await db.collection('notifications').add(notificationData);
+
+        res.status(201).json({
+            success: true,
+            message: 'Interest sent successfully',
+            requestId: docRef.id,
+            chatId: chatRef.id
+        });
     } catch (error) {
         next(error);
     }

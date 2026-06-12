@@ -1,57 +1,133 @@
-<nav class="py-8 px-8 bg-transparent">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
-        <a href="#" class="flex items-center">
-            <img src="../../../assets/icons8-book-96.png" class="h-8 mr-3" alt="BookSwap Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap">Book-Swap</span>
+<nav
+    class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-lg bg-white/70 border-b border-white/20 shadow-sm py-3">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-wrap items-center justify-between">
+        <!-- Logo -->
+        <a routerLink="/" class="flex items-center gap-3 group">
+            <div class="relative">
+                <div
+                    class="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-200">
+                </div>
+                <img src="assets/icons8-book-96.png"
+                    class="relative h-10 w-10 transition-transform duration-300 group-hover:rotate-12" alt="BookSwap" />
+            </div>
+            <span class="text-2xl font-bold tracking-tight text-gray-900 font-sans">Book<span
+                    class="text-[#0DBE5E]">Swap</span></span>
         </a>
-        <button (click)="toggleMobileMenu()" data-collapse-toggle="navbar-default" type="button"
-            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-            aria-controls="navbar-default" aria-expanded="false">
+
+        <!-- Mobile Toggle -->
+        <button (click)="toggleMobileMenu()" type="button"
+            class="lg:hidden inline-flex items-center justify-center p-2 rounded-xl text-gray-700 hover:text-[#0DBE5E] hover:bg-gray-100/50 transition-all focus:outline-none">
             <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M1 1h15M1 7h15M1 13h15" />
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
         </button>
-        <div class="hidden lg:flex w-full md:block md:w-auto" id="navbar-default">
-            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border md:flex-row md:space-x-8 md:mt-0 md:border-0">
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center gap-8" id="navbar-default">
+            <ul
+                class="flex items-center gap-1 bg-gray-100/50 px-2 py-1.5 rounded-full border border-gray-200/50 backdrop-blur-sm">
                 <li>
-                    <a href="#"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0DBE5E]  md:p-0">Home</a>
+                    <a routerLink="/"
+                        class="px-5 py-2 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:text-[#0DBE5E] hover:shadow-md transition-all duration-300 cursor-pointer">Home</a>
                 </li>
                 <li>
-                    <a href="#about"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0DBE5E]  md:p-0">About</a>
+                    <a [routerLink]="['/']" fragment="about" (click)="toggleMobileMenu()"
+                        class="px-5 py-2 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:text-[#0DBE5E] hover:shadow-md transition-all duration-300 cursor-pointer">About</a>
                 </li>
                 <li>
-                    <a href="#contact"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0DBE5E]  md:p-0">Contact</a>
+                    <a [routerLink]="['/']" fragment="contact" (click)="toggleMobileMenu()"
+                        class="px-5 py-2 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:text-[#0DBE5E] hover:shadow-md transition-all duration-300 cursor-pointer">Contact</a>
                 </li>
                 <li>
                     <a (click)="onStoreButtonClick()"
-                        class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#0DBE5E]  md:p-0 cursor-pointer">Store</a>
+                        class="px-5 py-2 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:text-[#0DBE5E] hover:shadow-md transition-all duration-300 cursor-pointer">Store</a>
+                </li>
+                <li>
+                    <a routerLink="/chats"
+                        class="px-5 py-2 rounded-full text-sm font-semibold text-gray-700 hover:bg-white hover:text-[#0DBE5E] hover:shadow-md transition-all duration-300 cursor-pointer">Chats</a>
                 </li>
             </ul>
-        </div>
-        <div class="mt-6 lg:hidden" [hidden]="!isMobileMenuOpen">
-            <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-50 py-8 px-6">
-                <div class="flex justify-between">
-                    <a href="#" id="logo">
-                        <img srcset="../../../assets/icons8-book-96.png" class="h-10" alt="Logo" />
+
+            <div class="h-8 w-px bg-gray-200 mx-2"></div>
+
+            <div class="flex items-center gap-3">
+                <app-notification-bell
+                    class="hover:scale-110 transition-transform duration-200"></app-notification-bell>
+
+                <!-- Auth Section -->
+                <div *ngIf="user$ | async as user; else loginTemplate" class="flex items-center gap-3">
+                    <a [routerLink]="['/profile', user.uid]"
+                        class="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full hover:bg-white/50 border border-transparent hover:border-white/40 transition-all cursor-pointer group">
+                        <img [src]="user.photoURL || 'assets/default-avatar.svg'"
+                            class="h-8 w-8 rounded-full object-cover border-2 border-white shadow-sm" alt="Avatar">
+                        <span class="text-sm font-semibold text-gray-700 group-hover:text-[#0DBE5E]">{{user.displayName
+                            || 'User'}}</span>
                     </a>
-                    <button type="button" class="mx-4" (click)="toggleMobileMenu()">
-                        <i class="fa-solid fa-xmark fa-xl text-gray-500"></i>
+                    <button (click)="logout()"
+                        class="p-2 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all"
+                        title="Logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
                 </div>
-                <div class="flex flex-col space-y-4 mt-12">
-                    <a href="#" (click)="toggleMobileMenu()"
-                        class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900">Home</a>
-                    <a href="#about" (click)="toggleMobileMenu()"
-                        class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900">About</a>
-                    <a href="#contact" (click)="toggleMobileMenu()"
-                        class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900">Contact</a>
-                    <a (click)="onStoreButtonClick(); toggleMobileMenu()"
-                        class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 cursor-pointer">Store</a>
+
+                <ng-template #loginTemplate>
+                    <button (click)="login()"
+                        class="px-5 py-2 rounded-full bg-[#0DBE5E] text-white font-bold text-sm shadow-lg shadow-green-500/30 hover:shadow-green-500/40 hover:-translate-y-0.5 transition-all">
+                        Log In
+                    </button>
+                </ng-template>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="lg:hidden w-full overflow-hidden transition-all duration-300 ease-in-out origin-top"
+            [style.max-height]="isMobileMenuOpen ? '500px' : '0'" [style.opacity]="isMobileMenuOpen ? '1' : '0'">
+            <div class="mt-4 p-4 bg-white/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl space-y-2">
+                <a routerLink="/" (click)="toggleMobileMenu()"
+                    class="block px-4 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-[#0DBE5E] rounded-xl transition-colors">Home</a>
+                <a [routerLink]="['/']" fragment="about" (click)="toggleMobileMenu()"
+                    class="block px-4 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-[#0DBE5E] rounded-xl transition-colors">About</a>
+                <a [routerLink]="['/']" fragment="contact" (click)="toggleMobileMenu()"
+                    class="block px-4 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-[#0DBE5E] rounded-xl transition-colors">Contact</a>
+                <a (click)="onStoreButtonClick(); toggleMobileMenu()"
+                    class="block px-4 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-[#0DBE5E] rounded-xl transition-colors cursor-pointer">Store</a>
+                <a routerLink="/chats" (click)="toggleMobileMenu()"
+                    class="block px-4 py-3 text-base font-semibold text-gray-800 hover:bg-gray-50 hover:text-[#0DBE5E] rounded-xl transition-colors cursor-pointer">Chats</a>
+
+                <div class="border-t border-gray-100 pt-3 mt-2">
+                    <div *ngIf="user$ | async as user; else mobileLogin" class="flex flex-col gap-2">
+                        <div class="flex items-center justify-between px-4 pb-2">
+                            <div class="flex items-center gap-3">
+                                <img [src]="user.photoURL || 'assets/default-avatar.svg'"
+                                    class="h-10 w-10 rounded-full border-2 border-white shadow-sm">
+                                <div>
+                                    <p class="text-sm font-bold text-gray-900">{{user.displayName}}</p>
+                                    <p class="text-xs text-gray-500">{{user.email}}</p>
+                                </div>
+                            </div>
+                            <app-notification-bell></app-notification-bell>
+                        </div>
+                        <a [routerLink]="['/profile', user.uid]" (click)="toggleMobileMenu()"
+                            class="block text-center w-full bg-gray-100/80 text-gray-800 py-2.5 rounded-xl font-bold hover:bg-gray-200 transition-colors">View
+                            Profile</a>
+                        <button (click)="logout(); toggleMobileMenu()"
+                            class="block w-full text-center text-red-500 py-2 font-medium hover:bg-red-50 rounded-xl transition-colors">Log
+                            Out</button>
+                    </div>
+
+                    <ng-template #mobileLogin>
+                        <div class="flex flex-col gap-3 px-2">
+                            <div class="flex justify-center mb-2">
+                                <app-notification-bell></app-notification-bell>
+                            </div>
+                            <button (click)="login(); toggleMobileMenu()"
+                                class="w-full bg-[#0DBE5E] text-white py-3 rounded-xl font-bold shadow-md hover:shadow-lg transition-all">
+                                Log In
+                            </button>
+                        </div>
+                    </ng-template>
                 </div>
             </div>
         </div>

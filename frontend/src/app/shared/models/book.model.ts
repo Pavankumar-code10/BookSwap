@@ -7,6 +7,8 @@ export interface Book {
     condition: string;
     coverImage?: string;
     userUID: string;
+    ownerEmail?: string;
     status: 'available' | 'swapped' | 'pending';
+    genre?: string;
     // Add other fields as discovered
 }

@@ -1,0 +1,11 @@
+/* Chat List Styles */
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bg-checkered {
+    background-image: radial-gradient(#f1f1f1 1px, transparent 1px);
+    background-size: 20px 20px;
+}

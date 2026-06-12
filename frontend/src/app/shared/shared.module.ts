@@ -7,13 +7,15 @@ import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { TabComponent } from './components/tab/tab.component';
 import { TabsContainerComponent } from './components/tabs-container/tabs-container.component';
+import { NotificationBellComponent } from './components/notification-bell/notification-bell.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
         FooterComponent,
         TabComponent,
-        TabsContainerComponent
+        TabsContainerComponent,
+        NotificationBellComponent
     ],
     imports: [
         CommonModule,
@@ -29,7 +31,8 @@ import { TabsContainerComponent } from './components/tabs-container/tabs-contain
         HeaderComponent,
         FooterComponent,
         TabComponent,
-        TabsContainerComponent
+        TabsContainerComponent,
+        NotificationBellComponent
     ]
 })
 export class SharedModule { }
